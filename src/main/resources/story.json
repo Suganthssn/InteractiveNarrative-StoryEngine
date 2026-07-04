@@ -1,0 +1,134 @@
+[
+  {
+    "nodeId": "start",
+    "scenario": "Eren wakes up. The alarm is ringing.",
+    "isEnding": false,
+    "importance": 100,
+    "choices": [
+      {
+        "targetId": "training",
+        "text": "Go to daily training",
+        "edgeWeight": 1
+      },
+      {
+        "targetId": "reiner_meet",
+        "text": "Follow Reiner secretly",
+        "edgeWeight": 10
+      }
+    ]
+  },
+  {
+    "nodeId": "training",
+    "scenario": "You train hard with Mikasa.",
+    "isEnding": false,
+    "importance": 70,
+    "choices": [
+      {
+        "targetId": "wall_breach",
+        "text": "Hear an explosion",
+        "edgeWeight": 1
+      },
+      {
+        "targetId": "run_away",
+        "text": "Sneak out to nap",
+        "edgeWeight": 10
+      }
+    ]
+  },
+  {
+    "nodeId": "reiner_meet",
+    "scenario": "Reiner is acting suspicious near the wall.",
+    "isEnding": false,
+    "importance": 80,
+    "choices": [
+      {
+        "targetId": "basement",
+        "text": "Follow him to the basement",
+        "edgeWeight": 1
+      },
+      {
+        "targetId": "wall_breach",
+        "text": "Confront him (triggers attack)",
+        "edgeWeight": 5
+      }
+    ]
+  },
+  {
+    "nodeId": "wall_breach",
+    "scenario": "The Colossal Titan kicks the gate!",
+    "isEnding": false,
+    "importance": 100,
+    "choices": [
+      {
+        "targetId": "defend_gate",
+        "text": "Join the Vanguard",
+        "edgeWeight": 1
+      },
+      {
+        "targetId": "run_away",
+        "text": "Flee to the inner wall",
+        "edgeWeight": 5
+      }
+    ]
+  },
+  {
+    "nodeId": "basement",
+    "scenario": "You find Grisha's hidden journals.",
+    "isEnding": false,
+    "importance": 100,
+    "choices": [
+      {
+        "targetId": "ending_truth",
+        "text": "Read the truth",
+        "edgeWeight": 1
+      }
+    ]
+  },
+  {
+    "nodeId": "defend_gate",
+    "scenario": "You hold the line against the Titans.",
+    "isEnding": false,
+    "importance": 100,
+    "choices": [
+      {
+        "targetId": "ending_hero",
+        "text": "Unleash Titan form",
+        "edgeWeight": 1
+      }
+    ]
+  },
+  {
+    "nodeId": "run_away",
+    "scenario": "You hide in the woods, terrified.",
+    "isEnding": false,
+    "importance": 20,
+    "choices": [
+      {
+        "targetId": "ending_coward",
+        "text": "Wait for it to end",
+        "edgeWeight": 1
+      }
+    ]
+  },
+  {
+    "nodeId": "ending_hero",
+    "scenario": "GOOD ENDING: You saved the district. You are a hero.",
+    "isEnding": true,
+    "importance": 100,
+    "choices": []
+  },
+  {
+    "nodeId": "ending_coward",
+    "scenario": "BAD ENDING: You survived, but at what cost?",
+    "isEnding": true,
+    "importance": 100,
+    "choices": []
+  },
+  {
+    "nodeId": "ending_truth",
+    "scenario": "SECRET ENDING: You know the history of the world outside the walls.",
+    "isEnding": true,
+    "importance": 100,
+    "choices": []
+  }
+]
