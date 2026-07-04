@@ -7,25 +7,39 @@ By modeling narrative structures as **Directed Weighted Graphs**, this engine pr
 
 ## ✨ Core Features
 
-* **Fail-Fast Graph Validation (Kosaraju’s Algorithm):** Automatically scans the entire narrative structure on server startup. If an inescapable time-loop (a Strongly Connected Component with no exit) is detected, the engine intentionally crashes to prevent runtime softlocks.
-* **Dynamic Pathfinding (Dijkstra’s Algorithm):** Evaluates the narrative weight of player choices (e.g., main story vs. side quests) to calculate the absolute shortest "Canon Path" to every reachable ending in $O(V \log V + E)$ time.
-* **Defensive Architecture:** Built with robust exception handling to safely parse malformed data, missing edge weights, and disconnected nodes without throwing `NullPointerExceptions`.
+* **Fail-Fast Graph Validation (Kosaraju’s Algorithm):** Automatically scans the entire narrative structure on server startup. If an inescapable time-loop (a closed loop with no exit) is detected, the engine intentionally crashes to prevent runtime softlocks.
+* **Dynamic Pathfinding (Dijkstra’s Algorithm):** Evaluates the narrative weight of player choices to calculate the absolute shortest "Canon Path" to every reachable ending in $O(V \log V + E)$ time.
+* **Defensive Architecture:** Built with robust exception handling to safely parse malformed JSON data, missing edge weights, and disconnected nodes.
 
 ## 🛠️ Tech Stack
 
 * **Language:** Java 17+
 * **Framework:** Spring Boot
 * **Algorithms:** Graph Theory (Kosaraju's, Dijkstra's, DFS)
-* **Testing:** JUnit 5, Mockito (Unit Testing, Mocking)
+* **Testing:** JUnit 5, Mockito
 * **Build Tool:** Maven
 
 ---
 
-## 🏗️ Architecture & Data Modeling
+## 🏗️ How It Works (Architecture)
 
-> **Note to Interviewers:** The narrative is stored dynamically as a Graph, where each plot point is a **Vertex (Node)** and each player choice is a **Directed Edge** containing a narrative weight.
+Instead of using a standard SQL database, this engine uses **Graph Data Structures** to make the story work. 
 
-*(Write your architecture explanation here! Explain how you used `story.json` as your in-memory database, why you separated the `StoryService` from the `StoryAlgorithmService`, and how you used Spring's `@EventListener` to decouple the validation logic from the server startup!)*
+### 1. The Story as a Graph
+The entire game is loaded into memory as a math problem:
+* **Nodes (Vertices):** Each part of the story or ending is a node.
+* **Choices (Edges):** The options the player can pick are the paths connecting the nodes. 
+* **Weights:** Each choice has a number attached to it (a weight) so the system knows the difference between the main story and side quests.
+
+### 2. Clean Code Organization
+The logic is completely separated into two main parts to follow strict backend design principles:
+* **The Data Layer:** Only handles loading the story files and configuration.
+* **The Algorithm Layer:** Only handles executing the complex graph mathematics.
+
+### 3. Fail-Fast Security
+To prevent a player from getting stuck in an infinite story loop with no way out, the engine checks itself the exact second it boots up:
+* It runs **Kosaraju’s Algorithm** to scan the whole story.
+* If it finds a closed loop with no exit (a softlock), the server intentionally crashes and throws an error *before* the game even starts. This guarantees the story is always 100% playable in production.
 
 ---
 
@@ -38,8 +52,8 @@ By modeling narrative structures as **Directed Weighted Graphs**, this engine pr
 ### Running Locally
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/yourusername/branching-narrative-engine.git](https://github.com/yourusername/branching-narrative-engine.git)
-   cd branching-narrative-engine
+   git clone [https://github.com/Suganthssn/InteractiveNarrative-StoryEngine.git](https://github.com/Suganthssn/InteractiveNarrative-StoryEngine.git)
+   cd InteractiveNarrative-StoryEngine
 
 ```
 
@@ -63,7 +77,7 @@ java -jar target/story-engine-0.0.1-SNAPSHOT.jar
 
 ## 🧪 Testing Strategy
 
-This engine prioritizes critical business logic and defensive programming. The test suite utilizes **JUnit 5** and **Mockito** to achieve high coverage without requiring a live database connection.
+This engine prioritizes critical business logic. The test suite utilizes **JUnit 5** and **Mockito** to verify the algorithms without requiring a live database connection.
 
 To run the test suite:
 
@@ -76,7 +90,6 @@ mvn test
 
 1. Verifying Dijkstra's Algorithm bypasses expensive routes for lower-cost alternatives.
 2. Ensuring Kosaraju's Algorithm correctly identifies and throws an `IllegalStateException` when a fatal time-loop is injected.
-3. Edge-case handling for missing choice arrays and missing edge weights.
 
 ---
 
@@ -112,6 +125,6 @@ Calculates the optimal route to all available endings based on choice weights.
 
 ```
 
-Make sure to replace the `https://github.com/yourusername/branching-narrative-engine.git` URL with your actual repository link before pushing this to your main branch. Your project is now perfectly documented and ready to be shown off.
+Your GitHub repository is now completely ready to impress any engineering manager who clicks on it.
 
 ```
