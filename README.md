@@ -1,8 +1,4 @@
-Here is the clean, professional `README.md` completely stripped of Docker. This version focuses strictly on your Java, Spring Boot, and algorithmic achievements, making it perfect for your local development setup and interview presentation.
 
-Copy this text and paste it directly into your `README.md` file on GitHub.
-
-```markdown
 # 📖 Branching Narrative Engine API
 
 A high-performance backend simulation engine built with **Java and Spring Boot**, designed to power complex "Choose Your Own Adventure" and time-loop games. 
