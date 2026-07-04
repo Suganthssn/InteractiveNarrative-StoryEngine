@@ -1,17 +1,17 @@
 
-# 📖 Branching Narrative Engine API
+#  Branching Narrative Engine API
 
 A high-performance backend simulation engine built with **Java and Spring Boot**, designed to power complex "Choose Your Own Adventure" and time-loop games. 
 
 By modeling narrative structures as **Directed Weighted Graphs**, this engine proactively validates story integrity and dynamically calculates optimal gameplay routes.
 
-## ✨ Core Features
+##  Core Features
 
 * **Fail-Fast Graph Validation (Kosaraju’s Algorithm):** Automatically scans the entire narrative structure on server startup. If an inescapable time-loop (a closed loop with no exit) is detected, the engine intentionally crashes to prevent runtime softlocks.
 * **Dynamic Pathfinding (Dijkstra’s Algorithm):** Evaluates the narrative weight of player choices to calculate the absolute shortest "Canon Path" to every reachable ending in $O(V \log V + E)$ time.
 * **Defensive Architecture:** Built with robust exception handling to safely parse malformed JSON data, missing edge weights, and disconnected nodes.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 * **Language:** Java 17+
 * **Framework:** Spring Boot
@@ -21,7 +21,7 @@ By modeling narrative structures as **Directed Weighted Graphs**, this engine pr
 
 ---
 
-## 🏗️ How It Works (Architecture)
+##  How It Works (Architecture)
 
 Instead of using a standard SQL database, this engine uses **Graph Data Structures** to make the story work. 
 
@@ -43,7 +43,7 @@ To prevent a player from getting stuck in an infinite story loop with no way out
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 * Java 17 or higher installed on your machine.
@@ -58,7 +58,6 @@ To prevent a player from getting stuck in an infinite story loop with no way out
 ```
 
 2. Build the project using Maven:
-```bash
 mvn clean package
 
 ```
@@ -123,8 +122,3 @@ Calculates the optimal route to all available endings based on choice weights.
 
 ```
 
-```
-
-Your GitHub repository is now completely ready to impress any engineering manager who clicks on it.
-
-```
